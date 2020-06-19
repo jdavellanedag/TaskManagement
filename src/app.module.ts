@@ -4,14 +4,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { configDBService } from './config/typeorm.config';
 import { ConfigModule } from '@nestjs/config'
 import { AuthModule } from './auth/auth.module';
-import configuration from './config/configuration';
+import * as config from 'config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      load: [configuration],
-      isGlobal: true,
-    }),
+    ConfigModule.forRoot({isGlobal: true,}),
     TypeOrmModule.forRoot(configDBService.getTypeOrmConfig()),
     TasksModule,
     AuthModule,
